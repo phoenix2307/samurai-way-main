@@ -1,0 +1,14 @@
+
+.myPosts{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.addPost{
+    margin-bottom: 3px;
+}
+.posts{
+    background-color: #ffffff;
+    padding: 5px;
+    border: 1px solid lightsteelblue;
+}
