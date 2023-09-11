@@ -6,7 +6,7 @@ type ProfilePropsType = {}
 export const Profile = (props: ProfilePropsType) => {
     return (
         <>
-            <div className={s.content}>
+            <div className={s.profile}>
                 <img
                     src="https://st2.depositphotos.com/1003553/11729/i/950/depositphotos_117296254-stock-photo-flag-of-ukraine-painted-on.jpg"
                     alt=""/>

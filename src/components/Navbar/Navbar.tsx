@@ -9,16 +9,19 @@ export const Navbar = (props: NavbarPropsType) => {
         <>
             <nav className={s.nav}>
                 <div className={classActive}>
-                    <a href="src/components#">Profile</a>
+                    <a href="/profile">Profile</a>
                 </div>
                 <div className={s.item}>
-                    <a href="src/components#">Messages</a>
+                    <a href="/dialogs">Messages</a>
                 </div>
                 <div className={s.item}>
-                    <a href="src/components#">Music</a>
+                    <a href="/news">News</a>
                 </div>
                 <div className={s.item}>
-                    <a href="src/components#">Settings</a>
+                    <a href="/music">Music</a>
+                </div>
+                <div className={s.item}>
+                    <a href="/settings">Settings</a>
                 </div>
             </nav>
         </>

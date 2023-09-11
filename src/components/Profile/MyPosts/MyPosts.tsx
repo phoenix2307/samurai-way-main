@@ -12,9 +12,9 @@ export const MyPosts = (props: MyPostsPropsType) => {
                     <button>Add post</button>
                 </div>
                 <div className={s.posts}>
-                    <Post message={'Gloria to Ukraine'}/>
-                    <Post message={'Gloria to heroes'}/>
-                    <Post message={'Death for enemies'}/>
+                    <Post message={'Gloria to Ukraine'} likesCount={'13'}/>
+                    <Post message={'Gloria to heroes'} likesCount={'12'}/>
+                    <Post message={'Death for enemies'} likesCount={'13'}/>
                 </div>
             </div>
         </>
