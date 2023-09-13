@@ -4,18 +4,24 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
+import {BrowserRouter, Route} from "react-router-dom";
 
 function App() {
     return (
-        <div className="App">
-            <Header/>
-            <Navbar/>
-            <div className={'content'}>
-                {/*<Profile/>*/}
-                <Dialogs/>
-            </div>
+        <BrowserRouter>
+            <div className="App">
+                <Header/>
+                <Navbar/>
+                <div className={'content'}>
+                    <Route component={Dialogs} path={'/dialogs'}/>
+                    <Route component={Profile} path={'/profile'}/>
+                    {/*<Profile/>*/}
+                    {/*<Dialogs/>*/}
+                </div>
 
-        </div>
+            </div>
+        </BrowserRouter>
+
     );
 }
 
