@@ -2,16 +2,17 @@ import React from "react";
 import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {PostType} from "../../redux/redux";
 
-type ProfilePropsType = {}
+type ProfilePropsType = {
+    postsData: PostType[]
+}
 
-
-
-export const Profile = (props: ProfilePropsType) => {
+export const Profile = ({postsData}: ProfilePropsType) => {
     return (
             <div className={s.profile}>
                 <ProfileInfo/>
-                <MyPosts/>
+                <MyPosts postsData={postsData}/>
             </div>
     )
 }
