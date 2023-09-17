@@ -7,14 +7,11 @@ type MyPostsPropsType = {
     postsData: PostType[]
 }
 export const MyPosts = ({postsData, ...props}: MyPostsPropsType) => {
+
     const refNewPost = React.createRef<HTMLTextAreaElement>()
 
     const sendPost = () => {
-        if (refNewPost.current) {
-            alert(refNewPost.current.value)
-        }
-
-
+        alert(refNewPost.current?.value)
     }
 
     const postList = postsData

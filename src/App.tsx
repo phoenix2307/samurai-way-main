@@ -15,36 +15,34 @@ import {StateType} from "./redux/redux";
 //     id: string
 //     name: string
 // }
-
 // export type MessageType = {
 //     id: string
 //     messageText: string
 // }
-
-const dialogsData = [
-    {id: '1', name: 'Alex'},
-    {id: '2', name: 'Nika'},
-    {id: '3', name: 'Natalie'},
-    {id: '4', name: 'Artur'},
-    {id: '5', name: 'Oleg'}
-]
-
-const messagesData = [
-    {id: '1', messageText: 'Hi'},
-    {id: '2', messageText: 'How are you?'},
-    {id: '3', messageText: 'Fine'},
-]
-
 // export type PostType = {
 //     id: string
 //     postContent: string
 //     likesCount: number
-// }
-const postsData = [
-    {id: '1', postContent: 'Gloria to Ukraine', likesCount: 13},
-    {id: '2', postContent: 'Gloria to heroes', likesCount: 12},
-    {id: '3', postContent: 'Death for enemies', likesCount: 13},
-]
+// }//
+// const dialogsData = [
+//     {id: '1', name: 'Alex'},
+//     {id: '2', name: 'Nika'},
+//     {id: '3', name: 'Natalie'},
+//     {id: '4', name: 'Artur'},
+//     {id: '5', name: 'Oleg'}
+// ]
+//
+// const messagesData = [
+//     {id: '1', messageText: 'Hi'},
+//     {id: '2', messageText: 'How are you?'},
+//     {id: '3', messageText: 'Fine'},
+// ]
+//
+// const postsData = [
+//     {id: '1', postContent: 'Gloria to Ukraine', likesCount: 13},
+//     {id: '2', postContent: 'Gloria to heroes', likesCount: 12},
+//     {id: '3', postContent: 'Death for enemies', likesCount: 13},
+// ]
 
 type AppPropsType = {
     state:StateType
