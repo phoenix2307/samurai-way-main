@@ -18,18 +18,20 @@ export type PostType = {
 // postsData -> PostType[]
 
 
-export type StateType = {
-    profilePage: { postsData: PostType[] }
-    messagesPage: {
-        dialogsData: DialogType[],
-        messagesData: MessageType[]
-    }
-    newsPage: any
-    musicPage: any
-    settingsPage: any
-}
+// export type StateType = {
+//     profilePage: { postsData: PostType[] }
+//     messagesPage: {
+//         dialogsData: DialogType[],
+//         messagesData: MessageType[]
+//     }
+//     newsPage: any
+//     musicPage: any
+//     settingsPage: any
+// }
 
-export const state: StateType = {
+export type StateType = typeof state
+
+export const state = {
     profilePage: {
         postsData: [
             {id: '1', postContent: 'Gloria to Ukraine', likesCount: 13},

@@ -16,6 +16,10 @@
 textarea{
     min-height: 80px;
     min-width: 40%;
+    padding: 10px;
+}
+textarea::placeholder{
+    opacity: 0.5;
 }
 
 button{

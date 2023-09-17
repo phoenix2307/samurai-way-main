@@ -7,16 +7,25 @@ type MyPostsPropsType = {
     postsData: PostType[]
 }
 export const MyPosts = ({postsData, ...props}: MyPostsPropsType) => {
+    const refNewPost = React.createRef<HTMLTextAreaElement>()
+
+    const sendPost = () => {
+        if (refNewPost.current) {
+            alert(refNewPost.current.value)
+        }
+
+
+    }
 
     const postList = postsData
-        .map(post=><Post message={post.postContent} likesCount={post.likesCount}/>)
+        .map(post => <Post message={post.postContent} likesCount={post.likesCount}/>)
 
     return (
         <div className={s.myPosts}>
             <h3>My posts</h3>
             <div className={s.addPost}>
-                <textarea></textarea>
-                <button>add post</button>
+                <textarea ref={refNewPost} placeholder={'type new message'}></textarea>
+                <button onClick={sendPost}>SEND</button>
             </div>
             <div className={s.posts}>
                 {postList}
