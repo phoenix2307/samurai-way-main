@@ -1,3 +1,6 @@
+import {v1} from "uuid";
+import {rerenderEntireTree} from "../render";
+
 export type DialogType = {
     id: string
     name: string
@@ -57,4 +60,14 @@ export const state = {
     newsPage: {},
     musicPage: {},
     settingsPage: {}
+}
+
+export const addNewPost = (textNewPost: string) => {
+    let newPost: PostType = {
+        id: v1(),
+        postContent: textNewPost,
+        likesCount: 0
+    }
+    state.profilePage.postsData.push(newPost)
+    rerenderEntireTree(state)
 }

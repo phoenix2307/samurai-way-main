@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {StateType} from "./redux/redux";
+import {StateType} from "./redux/state";
 
 //
 // export type DialogType = {
@@ -45,9 +45,11 @@ import {StateType} from "./redux/redux";
 // ]
 
 type AppPropsType = {
-    state:StateType
+    state: StateType
+    addPostCallback: (newPost: string) => void
 }
-function App({state, ...props}:AppPropsType) {
+
+function App({state, addPostCallback, ...props}: AppPropsType) {
 
     return (
         <BrowserRouter>
@@ -57,11 +59,12 @@ function App({state, ...props}:AppPropsType) {
                 <div className={'content'}>
                     <Route render={() =>
                         <Profile
-                        postsData={state.profilePage.postsData}/>} path={'/profile'}/>
+                            postsData={state.profilePage.postsData}
+                            addPostCallback={addPostCallback}/>} path={'/profile'}/>
                     <Route render={() =>
                         <Dialogs
-                        dialogsData={state.messagesPage.dialogsData}
-                        messagesData={state.messagesPage.messagesData}/>} path={'/dialogs'}/>
+                            dialogsData={state.messagesPage.dialogsData}
+                            messagesData={state.messagesPage.messagesData}/>} path={'/dialogs'}/>
                     <Route render={() => <News/>} path={'/news'}/>
                     <Route render={() => <Music/>} path={'/music'}/>
                     <Route render={() => <Settings/>} path={'/settings'}/>

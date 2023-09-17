@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogType, MessageType} from "../../redux/redux";
+import {DialogType, MessageType} from "../../redux/state";
 
 
 type DialogsPropsType = {
@@ -12,10 +12,10 @@ type DialogsPropsType = {
 
 export const Dialogs = ({dialogsData, messagesData, ...props}: DialogsPropsType) => {
     const dialogList = dialogsData
-        .map(dialog => <DialogItem id={dialog.id} name={dialog.name}/>)
+        .map(dialog => <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>)
 
     const messagesList = messagesData
-        .map(message=><Message messageText={message.messageText}/>)
+        .map(message=><Message key={message.id} messageText={message.messageText}/>)
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

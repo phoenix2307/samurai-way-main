@@ -1,21 +1,26 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {PostType} from "../../../redux/redux";
+import {PostType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     postsData: PostType[]
+    addPostCallback: (newPost: string) => void
 }
-export const MyPosts = ({postsData, ...props}: MyPostsPropsType) => {
+export const MyPosts = ({postsData, addPostCallback, ...props}: MyPostsPropsType) => {
 
     const refNewPost = React.createRef<HTMLTextAreaElement>()
 
     const sendPost = () => {
-        alert(refNewPost.current?.value)
+        if (refNewPost.current)
+            addPostCallback(refNewPost.current.value)
     }
 
     const postList = postsData
-        .map(post => <Post message={post.postContent} likesCount={post.likesCount}/>)
+        .map(post => <Post
+            key={post.id}
+            message={post.postContent}
+            likesCount={post.likesCount}/>)
 
     return (
         <div className={s.myPosts}>
