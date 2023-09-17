@@ -15,10 +15,7 @@ function App() {
                 <div className={'content'}>
                     <Route component={Dialogs} path={'/dialogs'}/>
                     <Route component={Profile} path={'/profile'}/>
-                    {/*<Profile/>*/}
-                    {/*<Dialogs/>*/}
                 </div>
-
             </div>
         </BrowserRouter>
 

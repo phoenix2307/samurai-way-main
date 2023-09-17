@@ -27,15 +27,16 @@ ul {
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 3px;
-  background-color: #91bdde;
+  background-color: #606060;
 }
 
 .content{
   grid-area: c;
-  background-color: #cdd7e0;
+  background-color: #343434;
   width: 100%;
   display: flex;
   flex-direction: column;
+  color: white;
 }
 .content img{
   width: 100%;

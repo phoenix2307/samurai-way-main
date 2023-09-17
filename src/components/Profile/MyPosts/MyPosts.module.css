@@ -3,9 +3,24 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
+    padding: 10px;
 }
 .addPost{
-    margin-bottom: 3px;
+    margin-bottom: 10px;
+    display: flex;
+    /*flex-direction: column;*/
+    gap: 10px;
+    align-items: flex-end;
+}
+
+textarea{
+    min-height: 80px;
+    min-width: 40%;
+}
+
+button{
+    font-size: 12px;
+    padding: 2px;
 }
 .posts{
     background-color: #ffffff;

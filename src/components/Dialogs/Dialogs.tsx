@@ -1,47 +1,37 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {Message} from "./Message/Message";
 
+const dialogsData = [
+    {id: '1', name: 'Alex'},
+    {id: '2', name: 'Nika'},
+    {id: '3', name: 'Natalie'},
+    {id: '4', name: 'Artur'},
+    {id: '5', name: 'Oleg'}
+]
+
+const messagesData = [
+    {id: '1', messageText: 'Hi'},
+    {id: '2', messageText: 'How are you?'},
+    {id: '3', messageText: 'Fine'},
+]
+
+const dialogList = dialogsData
+    .map(dialog => <DialogItem id={dialog.id} name={dialog.name}/>)
+
+const messagesList = messagesData
+    .map(message=><Message messageText={message.messageText}/>)
 type DialogsPropsType = {}
 
-type DialogItemPropsType = {
-    id: string
-    name: string
-}
-const DialogItem = ({id, name}: DialogItemPropsType)=>{
-    const path = `/dialogs/+${id}`
-    return(
-
-            <div className={s.dialogsItem}>
-                <NavLink to={path} activeClassName={s.activeDialog} >{name}</NavLink>
-            </div>
-    )
-}
-
-type MessagePropsType = {
-    messageText: string
-}
-const Message = ({messageText}:MessagePropsType)=> {
-    return (
-        <div className={s.messagesItem}>{messageText}</div>
-    )
-}
-
-export const Dialogs = ({}: DialogsPropsType) => {
+export const Dialogs = ({...props}: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem id={'1'} name={'Alex'}/>
-                <DialogItem id={'2'} name={'Nika'}/>
-                <DialogItem id={'3'} name={'Natalie'}/>
-                <DialogItem id={'4'} name={'Artur'}/>
-                <DialogItem id={'5'} name={'Oleg'}/>
-
+                {dialogList}
             </div>
             <div className={s.messagesItems}>
-                <Message messageText={'Hi'}/>
-                <Message messageText={'How are you?'}/>
-                <Message messageText={'Fine'}/>
+                {messagesList}
             </div>
         </div>
     )
