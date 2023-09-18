@@ -37,23 +37,24 @@ export type StateType = typeof state
 export const state = {
     profilePage: {
         postsData: [
-            {id: '1', postContent: 'Gloria to Ukraine', likesCount: 13},
-            {id: '2', postContent: 'Gloria to heroes', likesCount: 12},
-            {id: '3', postContent: 'Death for enemies', likesCount: 13},
-        ]
+            {id: v1(), postContent: 'Gloria to Ukraine', likesCount: 13},
+            {id: v1(), postContent: 'Gloria to heroes', likesCount: 12},
+            {id: v1(), postContent: 'Death for enemies', likesCount: 13},
+        ],
+        newTextPost: ''
     },
     messagesPage: {
         dialogsData: [
-            {id: '1', name: 'Alex'},
-            {id: '2', name: 'Nika'},
-            {id: '3', name: 'Natalie'},
-            {id: '4', name: 'Artur'},
-            {id: '5', name: 'Oleg'}
+            {id: v1(), name: 'Alex'},
+            {id: v1(), name: 'Nika'},
+            {id: v1(), name: 'Natalie'},
+            {id: v1(), name: 'Artur'},
+            {id: v1(), name: 'Oleg'}
         ],
         messagesData: [
-            {id: '1', messageText: 'Hi'},
-            {id: '2', messageText: 'How are you?'},
-            {id: '3', messageText: 'Fine'},
+            {id: v1(), messageText: 'Hi'},
+            {id: v1(), messageText: 'How are you?'},
+            {id: v1(), messageText: 'Fine'},
         ]
 
     },
@@ -62,12 +63,19 @@ export const state = {
     settingsPage: {}
 }
 
-export const addNewPost = (textNewPost: string) => {
+export const addNewPost = () => {
     let newPost: PostType = {
         id: v1(),
-        postContent: textNewPost,
+        postContent: state.profilePage.newTextPost,
         likesCount: 0
     }
     state.profilePage.postsData.push(newPost)
     rerenderEntireTree(state)
+    state.profilePage.newTextPost = ''
+}
+
+export const changeTextPost = (changedValue: string) => {
+    state.profilePage.newTextPost = changedValue
+    rerenderEntireTree(state)
+    // state.profilePage.newTextPost = ''
 }

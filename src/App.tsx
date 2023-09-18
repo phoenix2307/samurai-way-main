@@ -46,7 +46,8 @@ import {StateType} from "./redux/state";
 
 type AppPropsType = {
     state: StateType
-    addPostCallback: (newPost: string) => void
+    addPostCallback: () => void
+    changeTextPost: (changedValue: string)=>void
 }
 
 function App({state, addPostCallback, ...props}: AppPropsType) {
@@ -57,14 +58,24 @@ function App({state, addPostCallback, ...props}: AppPropsType) {
                 <Header/>
                 <Navbar/>
                 <div className={'content'}>
+
                     <Route render={() =>
                         <Profile
                             postsData={state.profilePage.postsData}
-                            addPostCallback={addPostCallback}/>} path={'/profile'}/>
+                            addPostCallback={addPostCallback}
+                            changeTextPost={props.changeTextPost}
+                            updatedTextPost={state.profilePage.newTextPost}
+                        />}
+
+                           path={'/profile'}/>
+
                     <Route render={() =>
                         <Dialogs
                             dialogsData={state.messagesPage.dialogsData}
-                            messagesData={state.messagesPage.messagesData}/>} path={'/dialogs'}/>
+                            messagesData={state.messagesPage.messagesData}/>}
+
+                           path={'/dialogs'}/>
+
                     <Route render={() => <News/>} path={'/news'}/>
                     <Route render={() => <Music/>} path={'/music'}/>
                     <Route render={() => <Settings/>} path={'/settings'}/>

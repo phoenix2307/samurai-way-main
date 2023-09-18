@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addNewPost, StateType} from './redux/state'
+import {addNewPost, changeTextPost, StateType} from './redux/state'
 
 
 export const rerenderEntireTree = (state: StateType) => {
     ReactDOM.render(
-        <App state={state} addPostCallback={addNewPost}/>,
+        <App
+            state={state}
+            addPostCallback={addNewPost}
+            changeTextPost={changeTextPost}/>,
         document.getElementById('root')
     );
 }
