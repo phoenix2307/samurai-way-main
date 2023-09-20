@@ -2,7 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addNewPost, state} from './redux/state'
-import {rerenderEntireTree} from "./render";
+import {addNewPost, changeTextPost, state, StateType, subscribe} from './redux/state'
 
-rerenderEntireTree(state);
+const rerenderEntireTreeForIndex = (state: StateType) => {
+    ReactDOM.render(
+        <App
+            state={state}
+            addPostCallback={addNewPost}
+            changeTextPost={changeTextPost}/>,
+        document.getElementById('root')
+    );
+}
+
+rerenderEntireTreeForIndex(state);
+
+subscribe(rerenderEntireTreeForIndex)

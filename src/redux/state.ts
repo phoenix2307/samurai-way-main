@@ -1,6 +1,8 @@
 import {v1} from "uuid";
-import {rerenderEntireTree} from "../render";
 
+let rerenderEntireTreeForState = (state: StateType) => {
+    console.log('dfgdgd')
+}
 export type DialogType = {
     id: string
     name: string
@@ -10,27 +12,12 @@ export type MessageType = {
     id: string
     messageText: string
 }
-//dialogsData -> DialogType[]
-//messagesData -> MessageType[]
 
 export type PostType = {
     id: string
     postContent: string
     likesCount: number
 }
-// postsData -> PostType[]
-
-
-// export type StateType = {
-//     profilePage: { postsData: PostType[] }
-//     messagesPage: {
-//         dialogsData: DialogType[],
-//         messagesData: MessageType[]
-//     }
-//     newsPage: any
-//     musicPage: any
-//     settingsPage: any
-// }
 
 export type StateType = typeof state
 
@@ -63,6 +50,8 @@ export const state = {
     settingsPage: {}
 }
 
+// Functions for event processing
+
 export const addNewPost = () => {
     let newPost: PostType = {
         id: v1(),
@@ -70,12 +59,18 @@ export const addNewPost = () => {
         likesCount: 0
     }
     state.profilePage.postsData.push(newPost)
-    rerenderEntireTree(state)
+    rerenderEntireTreeForState(state)
     state.profilePage.newTextPost = ''
+
 }
 
 export const changeTextPost = (changedValue: string) => {
     state.profilePage.newTextPost = changedValue
-    rerenderEntireTree(state)
-    // state.profilePage.newTextPost = ''
+    rerenderEntireTreeForState(state)
+}
+
+// Functions for rerender
+
+export const subscribe = (observer: (state:StateType) => void) => {
+    rerenderEntireTreeForState = observer
 }

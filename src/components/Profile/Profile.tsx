@@ -7,16 +7,16 @@ import {PostType} from "../../redux/state";
 type ProfilePropsType = {
     postsData: PostType[]
     addPostCallback: () => void
-    changeTextPost: (changedValue: string)=>void
+    changeTextPost: (changedValue: string) => void
     updatedTextPost: string
 }
 
-export const Profile = ({
-                            postsData,
-                            addPostCallback,
-                            updatedTextPost,
-                            ...props
-                        }: ProfilePropsType) => {
+export const Profile: React.FC<ProfilePropsType> = ({
+                                                        postsData,
+                                                        addPostCallback,
+                                                        updatedTextPost,
+                                                        ...props
+                                                    }) => {
     return (
         <div className={s.profile}>
             <ProfileInfo/>

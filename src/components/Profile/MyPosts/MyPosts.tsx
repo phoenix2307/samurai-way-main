@@ -9,7 +9,7 @@ type MyPostsPropsType = {
     changeTextPost: (changedValue: string) => void
     updatedTextPost: string
 }
-export const MyPosts = ({postsData, addPostCallback, updatedTextPost, ...props}: MyPostsPropsType) => {
+export const MyPosts: React.FC<MyPostsPropsType> = ({postsData, addPostCallback, updatedTextPost, ...props}) => {
 
     const refNewPost = React.createRef<HTMLTextAreaElement>()
 
