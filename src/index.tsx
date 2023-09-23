@@ -8,8 +8,8 @@ const rerenderEntireTreeForIndex = (state: StateType) => {
     ReactDOM.render(
         <App
             state={state}
-            addPostCallback={store.addNewPost.bind(store)}
-            changeTextPost={store.changeTextPost.bind(store)}/>,
+            dispatch={store.dispatch.bind(store)}
+        />,
         document.getElementById('root')
     );
 }

@@ -89,14 +89,37 @@ export type StateType = {
     settingsPage: {}
 }
 
-
 export type StoreType = {
     _state: StateType
     getState: () => StateType
     _callSubscriber: (state: StateType) => void
-    addNewPost: () => void
-    changeTextPost: (changedValue: string) => void
+    // addNewPost: () => void
+    // changeTextPost: (changedValue: string) => void
     subscribe: (callback: (state: StateType) => void) => void
+    dispatch: (action: ActionsType) => void
+}
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+type ChangeActionType = {
+    type: 'CHANGE-TEXT-POST'
+    changedValue: string
+}
+export type ActionsType = AddPostActionType | ChangeActionType
+
+export const addPostAC = (): AddPostActionType => {
+    return {
+        type: "ADD-POST"
+    }
+}
+
+export const changeTextPostAC = (changedValue: string): ChangeActionType => {
+    return{
+        type: "CHANGE-TEXT-POST",
+        changedValue: changedValue
+    }
 }
 
 export const store: StoreType = {
@@ -128,27 +151,49 @@ export const store: StoreType = {
         musicPage: {},
         settingsPage: {}
     },
+
     getState() {
         return this._state
     },
     _callSubscriber(state: StateType) {
         console.log('dfgdgd')
     },
-    addNewPost() {
-        let newPost: PostType = {
-            id: v1(),
-            postContent: this._state.profilePage.newTextPost,
-            likesCount: 0
-        }
-        this._state.profilePage.postsData.push(newPost)
-        this._callSubscriber(this._state)
-        this._state.profilePage.newTextPost = ''
-    },
-    changeTextPost(changedValue: string) {
-        this._state.profilePage.newTextPost = changedValue
-        this._callSubscriber(this._state)
-    },
+    // addNewPost() {
+    //     let newPost: PostType = {
+    //         id: v1(),
+    //         postContent: this._state.profilePage.newTextPost,
+    //         likesCount: 0
+    //     }
+    //     this._state.profilePage.postsData.push(newPost)
+    //     this._callSubscriber(this._state)
+    //     this._state.profilePage.newTextPost = ''
+    // },
+    // changeTextPost(changedValue: string) {
+    //     this._state.profilePage.newTextPost = changedValue
+    //     this._callSubscriber(this._state)
+    // },
     subscribe(observer: (state: StateType) => void) {
         this._callSubscriber = observer
+    },
+    dispatch(action: ActionsType) {
+
+        switch (action.type) {
+
+            case 'ADD-POST':
+                let newPost: PostType = {
+                    id: v1(),
+                    postContent: this._state.profilePage.newTextPost,
+                    likesCount: 0
+                }
+                this._state.profilePage.postsData.push(newPost)
+                this._callSubscriber(this._state)
+                this._state.profilePage.newTextPost = '';
+                break
+
+            case 'CHANGE-TEXT-POST':
+                this._state.profilePage.newTextPost = action.changedValue
+                this._callSubscriber(this._state)
+                break
+        }
     }
 }

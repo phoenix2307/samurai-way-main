@@ -8,49 +8,14 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {StateType} from "./redux/state";
-
-//
-// export type DialogType = {
-//     id: string
-//     name: string
-// }
-// export type MessageType = {
-//     id: string
-//     messageText: string
-// }
-// export type PostType = {
-//     id: string
-//     postContent: string
-//     likesCount: number
-// }//
-// const dialogsData = [
-//     {id: '1', name: 'Alex'},
-//     {id: '2', name: 'Nika'},
-//     {id: '3', name: 'Natalie'},
-//     {id: '4', name: 'Artur'},
-//     {id: '5', name: 'Oleg'}
-// ]
-//
-// const messagesData = [
-//     {id: '1', messageText: 'Hi'},
-//     {id: '2', messageText: 'How are you?'},
-//     {id: '3', messageText: 'Fine'},
-// ]
-//
-// const postsData = [
-//     {id: '1', postContent: 'Gloria to Ukraine', likesCount: 13},
-//     {id: '2', postContent: 'Gloria to heroes', likesCount: 12},
-//     {id: '3', postContent: 'Death for enemies', likesCount: 13},
-// ]
+import {ActionsType, StateType} from "./redux/state";
 
 type AppPropsType = {
     state: StateType
-    addPostCallback: () => void
-    changeTextPost: (changedValue: string)=>void
+    dispatch: (action: ActionsType) => void
 }
 
-function App({state, addPostCallback, ...props}: AppPropsType) {
+function App({state, dispatch, ...props}: AppPropsType) {
 
     return (
         <BrowserRouter>
@@ -62,8 +27,7 @@ function App({state, addPostCallback, ...props}: AppPropsType) {
                     <Route render={() =>
                         <Profile
                             postsData={state.profilePage.postsData}
-                            addPostCallback={addPostCallback}
-                            changeTextPost={props.changeTextPost}
+                            dispatch={dispatch}
                             updatedTextPost={state.profilePage.newTextPost}
                         />}
 
