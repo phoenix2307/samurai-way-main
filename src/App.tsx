@@ -34,9 +34,9 @@ function App({state, dispatch, ...props}: AppPropsType) {
 
                 <Route render={() =>
                     <Dialogs
-                        dialogsData={state.messagesPage.dialogsData}
-                        messagesData={state.messagesPage.messagesData}
-                        updatedTextPost={state.messagesPage.newMessage}
+                        dialogsData={state.dialogsPage.dialogsData}
+                        messagesData={state.dialogsPage.messagesData}
+                        updatedTextPost={state.dialogsPage.newMessage}
                         dispatch={dispatch}
                     />}
 
