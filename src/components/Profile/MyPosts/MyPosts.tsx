@@ -8,13 +8,13 @@ type MyPostsPropsType = {
     dispatch: (action: ActionsType) => void
     updatedTextPost: string
 }
-export const MyPosts: React
-    .FC<MyPostsPropsType> = ({
-                                 postsData,
-                                 dispatch,
-                                 updatedTextPost,
-                                 ...props
-                             }) => {
+export const MyPosts:
+    React.FC<MyPostsPropsType> = ({
+                                      postsData,
+                                      dispatch,
+                                      updatedTextPost,
+                                      ...props
+                                  }) => {
 
     const refNewPost = React.createRef<HTMLTextAreaElement>()
 
@@ -38,7 +38,7 @@ export const MyPosts: React
             <div className={s.addPost}>
                 <textarea
                     ref={refNewPost}
-                    placeholder={'type new message'}
+                    placeholder={'type new post'}
                     onChange={onChangeHandler}
                     value={updatedTextPost}></textarea>
                 <button onClick={sendPost}>SEND</button>

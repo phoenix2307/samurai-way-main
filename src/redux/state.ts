@@ -21,7 +21,8 @@ export type StateType = {
     }
     messagesPage: {
         dialogsData: DialogType[],
-        messagesData: MessageType[]
+        messagesData: MessageType[],
+        newMessage: string
     }
     newsPage: {}
     musicPage: {}
@@ -37,9 +38,14 @@ export type StoreType = {
 }
 
 type AddPostActionType = ReturnType<typeof addPostAC>
-
 type ChangeTextPostActionType = ReturnType<typeof changeTextPostAC>
-export type ActionsType = AddPostActionType | ChangeTextPostActionType
+type ChangeMessageTextActionType = ReturnType<typeof changeMessageTextForDialogsAC>
+type SendMessageActionType = ReturnType<typeof sendMessageAC>
+
+export type ActionsType = AddPostActionType
+    | ChangeTextPostActionType
+    | ChangeMessageTextActionType
+    | SendMessageActionType
 
 export const addPostAC = () => {
     return {
@@ -47,10 +53,23 @@ export const addPostAC = () => {
     } as const
 }
 export const changeTextPostAC = (changedValue: string) => {
-    return{
+    return {
         type: "CHANGE-TEXT-POST",
         changedValue: changedValue
     } as const
+}
+
+export const changeMessageTextForDialogsAC = (newMessage: string) => {
+    return {
+        type: 'CHANGE-MESSAGE-TO-DIALOGS',
+        newMessage: newMessage
+    } as const
+}
+export const sendMessageAC = () => {
+    return {
+        type: 'SEND-MESSAGE'
+    } as const
+
 }
 
 export const store: StoreType = {
@@ -75,19 +94,19 @@ export const store: StoreType = {
                 {id: v1(), messageText: 'Hi'},
                 {id: v1(), messageText: 'How are you?'},
                 {id: v1(), messageText: 'Fine'},
-            ]
+            ],
+            newMessage: ''
 
         },
         newsPage: {},
         musicPage: {},
         settingsPage: {}
     },
-
     getState() {
         return this._state
     },
     _callSubscriber(state: StateType) {
-        console.log('dfgdgd')
+        console.log('plug')
     },
     subscribe(observer: (state: StateType) => void) {
         this._callSubscriber = observer
@@ -110,6 +129,21 @@ export const store: StoreType = {
             case 'CHANGE-TEXT-POST':
                 this._state.profilePage.newTextPost = action.changedValue
                 this._callSubscriber(this._state)
+                break
+
+            case "CHANGE-MESSAGE-TO-DIALOGS":
+                this._state.messagesPage.newMessage = action.newMessage
+                this._callSubscriber(this._state)
+                break
+
+            case "SEND-MESSAGE":
+                let newMessageForSend = {
+                    id: v1(),
+                    messageText: this._state.messagesPage.newMessage
+                }
+                this._state.messagesPage.messagesData.push(newMessageForSend)
+                this._callSubscriber(this._state)
+                this._state.messagesPage.newMessage = '';
                 break
         }
     }

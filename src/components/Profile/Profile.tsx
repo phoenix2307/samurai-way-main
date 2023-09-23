@@ -6,24 +6,22 @@ import {ActionsType, PostType} from "../../redux/state";
 
 type ProfilePropsType = {
     postsData: PostType[]
-    dispatch: (action: ActionsType) => void
     updatedTextPost: string
+    dispatch: (action: ActionsType) => void
 }
 
-export const Profile: React
-    .FC<ProfilePropsType> = ({
-                                 postsData,
-                                 dispatch,
-                                 updatedTextPost,
-                                 ...props
-                             }) => {
+export const Profile:
+    React.FC<ProfilePropsType> = ({
+                                      postsData,
+                                      updatedTextPost,
+                                      dispatch,
+                                      ...props
+                                  }) => {
     return (
         <div className={s.profile}>
             <ProfileInfo/>
             <MyPosts postsData={postsData}
                      dispatch={dispatch}
-                // addPostCallback={addPostCallback}
-                // changeTextPost={props.changeTextPost}
                      updatedTextPost={updatedTextPost}
             />
         </div>

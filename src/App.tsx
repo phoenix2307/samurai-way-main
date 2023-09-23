@@ -4,7 +4,7 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
@@ -18,35 +18,35 @@ type AppPropsType = {
 function App({state, dispatch, ...props}: AppPropsType) {
 
     return (
-        <BrowserRouter>
-            <div className="App">
-                <Header/>
-                <Navbar/>
-                <div className={'content'}>
+        <div className="App">
+            <Header/>
+            <Navbar/>
+            <div className={'content'}>
 
-                    <Route render={() =>
-                        <Profile
-                            postsData={state.profilePage.postsData}
-                            dispatch={dispatch}
-                            updatedTextPost={state.profilePage.newTextPost}
-                        />}
+                <Route render={() =>
+                    <Profile
+                        postsData={state.profilePage.postsData}
+                        updatedTextPost={state.profilePage.newTextPost}
+                        dispatch={dispatch}
+                    />}
 
-                           path={'/profile'}/>
+                       path={'/profile'}/>
 
-                    <Route render={() =>
-                        <Dialogs
-                            dialogsData={state.messagesPage.dialogsData}
-                            messagesData={state.messagesPage.messagesData}/>}
+                <Route render={() =>
+                    <Dialogs
+                        dialogsData={state.messagesPage.dialogsData}
+                        messagesData={state.messagesPage.messagesData}
+                        updatedTextPost={state.messagesPage.newMessage}
+                        dispatch={dispatch}
+                    />}
 
-                           path={'/dialogs'}/>
+                       path={'/dialogs'}/>
 
-                    <Route render={() => <News/>} path={'/news'}/>
-                    <Route render={() => <Music/>} path={'/music'}/>
-                    <Route render={() => <Settings/>} path={'/settings'}/>
-                </div>
+                <Route render={() => <News/>} path={'/news'}/>
+                <Route render={() => <Music/>} path={'/music'}/>
+                <Route render={() => <Settings/>} path={'/settings'}/>
             </div>
-        </BrowserRouter>
-
+        </div>
     );
 }
 
