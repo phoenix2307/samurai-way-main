@@ -2,7 +2,8 @@ import {v1} from "uuid";
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 
-// Store
+// Typing
+
 export type DialogType = {
     id: string
     name: string
@@ -47,6 +48,8 @@ export type StoreType = {
     subscribe: (callback: (state: StateType) => void) => void
     dispatch: (action: ActionsType) => void
 }
+
+// Action types
 
 type AddPostActionType = ReturnType<typeof addPostAC>
 type ChangeTextPostActionType = ReturnType<typeof changeTextPostAC>

@@ -9,7 +9,7 @@ import {
     DialogType,
     MessageType,
     sendMessageAC
-} from "../../redux/state";
+} from "../../redux/store";
 
 
 type DialogsPropsType = {
