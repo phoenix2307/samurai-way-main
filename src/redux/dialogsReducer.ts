@@ -1,6 +1,22 @@
-import {ActionsType, DialogsPageType} from "./store";
 import {v1} from "uuid";
 
+export type DialogType = {
+    id: string
+    name: string
+}
+export type DialogsPageType = {
+    dialogsData: DialogType[]
+    messagesData: MessageType[]
+    newMessage: string
+}
+export type MessageType = {
+    id: string
+    messageText: string
+}
+
+type ChangeMessageTextActionType = ReturnType<typeof changeMessageTextForDialogsAC>
+type SendMessageActionType = ReturnType<typeof sendMessageAC>
+export type DialogsActionType = ChangeMessageTextActionType | SendMessageActionType
 
 const initialState = {
     dialogsData: [
@@ -19,7 +35,7 @@ const initialState = {
 
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType) => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionType) => {
     switch (action.type){
         case "CHANGE-MESSAGE-TO-DIALOGS":
             state.newMessage = action.newMessage
@@ -35,5 +51,18 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
             return state
         default: return state
     }
+
+}
+
+export const changeMessageTextForDialogsAC = (newMessage: string) => {
+    return {
+        type: 'CHANGE-MESSAGE-TO-DIALOGS',
+        newMessage: newMessage
+    } as const
+}
+export const sendMessageAC = () => {
+    return {
+        type: 'SEND-MESSAGE'
+    } as const
 
 }

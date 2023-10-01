@@ -3,20 +3,21 @@ import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {
-    ActionsType,
     changeMessageTextForDialogsAC,
-    changeTextPostAC,
+    DialogsActionType,
     DialogType,
     MessageType,
     sendMessageAC
-} from "../../redux/store";
+} from "../../redux/dialogsReducer";
+import {ProfileActionType} from "../../redux/profileReducer";
+
 
 
 type DialogsPropsType = {
     dialogsData: DialogType[]
     messagesData: MessageType[]
     updatedTextPost: string
-    dispatch: (action: ActionsType) => void
+    dispatch: (action: DialogsActionType | ProfileActionType) => void
 }
 
 export const Dialogs:
