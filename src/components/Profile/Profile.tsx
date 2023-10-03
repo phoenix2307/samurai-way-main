@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
@@ -11,12 +11,10 @@ type ProfilePropsType = {
     dispatch: (action: DialogsActionType | ProfileActionType) => void
 }
 
-export const Profile:
-    React.FC<ProfilePropsType> = ({
+export const Profile: FC<ProfilePropsType> = ({
                                       postsData,
                                       updatedTextPost,
-                                      dispatch,
-                                      ...props
+                                      dispatch
                                   }) => {
     return (
         <div className={s.profile}>

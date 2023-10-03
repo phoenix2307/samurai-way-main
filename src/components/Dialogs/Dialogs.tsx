@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, FC} from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
@@ -11,8 +11,6 @@ import {
 } from "../../redux/dialogsReducer";
 import {ProfileActionType} from "../../redux/profileReducer";
 
-
-
 type DialogsPropsType = {
     dialogsData: DialogType[]
     messagesData: MessageType[]
@@ -20,13 +18,11 @@ type DialogsPropsType = {
     dispatch: (action: DialogsActionType | ProfileActionType) => void
 }
 
-export const Dialogs:
-    React.FC<DialogsPropsType> = ({
+export const Dialogs: FC<DialogsPropsType> = ({
                                       dialogsData,
                                       messagesData,
                                       updatedTextPost,
-                                      dispatch,
-                                      ...props
+                                      dispatch
                                   }) => {
 
     const dialogList = dialogsData.map(dialog => <DialogItem key={dialog.id}

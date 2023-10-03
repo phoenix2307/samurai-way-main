@@ -1,8 +1,10 @@
+import {FC} from "react";
+
 type MusicPropsType = {}
-export const Music = (props: MusicPropsType) => {
-  return(
-      <>
-        This page for Music
-      </>
-  )
+export const Music: FC<MusicPropsType> = ({}) => {
+    return (
+        <>
+            This page for Music
+        </>
+    )
 }

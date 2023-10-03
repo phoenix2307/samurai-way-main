@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 type SettingsPropsType = {}
-export const Settings = (props: SettingsPropsType) => {
+export const Settings: FC<SettingsPropsType> = () => {
     return (
         <>
 This page for Settings

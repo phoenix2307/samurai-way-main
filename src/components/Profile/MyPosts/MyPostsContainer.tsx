@@ -4,18 +4,17 @@ import {Post} from "./Post/Post";
 import {addPostAC, changeTextPostAC, PostType, ProfileActionType} from "../../../redux/profileReducer";
 import {DialogsActionType} from "../../../redux/dialogsReducer";
 
-type MyPostsPropsType = {
+type MyPostsContainerPropsType = {
     postsData: PostType[]
     dispatch: (action: DialogsActionType | ProfileActionType) => void
     updatedTextPost: string
 }
 
-export const MyPosts: FC<MyPostsPropsType> = ({
-                                                  postsData,
-                                                  dispatch,
-                                                  updatedTextPost
-                                              }) => {
-
+export const MyPostsContainer: FC<MyPostsContainerPropsType> = ({
+                                                                    postsData,
+                                                                    dispatch,
+                                                                    updatedTextPost
+                                                                }) => {
 
     const sendPost = () => {
         dispatch(addPostAC())
@@ -43,6 +42,7 @@ export const MyPosts: FC<MyPostsPropsType> = ({
             </div>
             <div className={s.posts}>
                 {postList}
+
             </div>
         </div>
 

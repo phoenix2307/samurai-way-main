@@ -3,29 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import {BrowserRouter} from "react-router-dom";
-import {App_Rx} from "./App_Rx";
+import {App} from "./App";
 import {AppRootStateType, store} from "./redux/redux-store";
-
-// const rerenderEntireTreeForIndex = (state: StateType) => {
-//     ReactDOM.render(
-//         <BrowserRouter>
-//             <App state={state} dispatch={store.dispatch.bind(store)}/>
-//         </BrowserRouter>,
-//         document.getElementById('root')
-//     );
-// }
-//
-// rerenderEntireTreeForIndex(store.getState());
-//
-// store.subscribe(rerenderEntireTreeForIndex)
-
+import {Provider} from "react-redux";
 
 // with Redux
 
 const rerenderEntireTreeForIndex = (state: AppRootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App_Rx state={state} dispatch={store.dispatch.bind(store)}/>
+            <Provider store={store}>
+                <App state={state} dispatch={store.dispatch.bind(store)}/>
+            </Provider>
         </BrowserRouter>,
         document.getElementById('root')
     );
@@ -33,6 +22,6 @@ const rerenderEntireTreeForIndex = (state: AppRootStateType) => {
 
 rerenderEntireTreeForIndex(store.getState());
 
-store.subscribe(()=>{
+store.subscribe(() => {
     rerenderEntireTreeForIndex(store.getState())
 })
