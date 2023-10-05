@@ -1,50 +1,53 @@
-import React, {ChangeEvent, FC} from "react";
-import s from './MyPosts.module.css'
-import {Post} from "./Post/Post";
+import React from "react";
+
 import {addPostAC, changeTextPostAC, PostType, ProfileActionType} from "../../../redux/profileReducer";
-import {DialogsActionType} from "../../../redux/dialogsReducer";
+import {MyPosts} from "./MyPosts";
+import {AppDispatch, AppRootStateType, store, StoreType} from "../../../redux/redux-store";
+import {connect} from "react-redux";
 
-type MyPostsContainerPropsType = {
-    postsData: PostType[]
-    dispatch: (action: DialogsActionType | ProfileActionType) => void
-    updatedTextPost: string
+// type MyPostsPropsType = {
+    // postsData: PostType[]
+    // dispatch: (action: DialogsActionType | ProfileActionType) => void
+    // updatedTextPost: string
+    // store: StoreType
+// }
+//
+// export const MyPostsContainer: FC<MyPostsPropsType> = ({...props}) => {
+//
+//     const state = store.getState()
+//
+//     const sendPost = () => {
+//         store.dispatch(addPostAC())
+//     }
+//
+//     const onChangeHandler = (value: string) => {
+//         store.dispatch(changeTextPostAC(value))
+//     }
+//
+//
+//     return (
+//         <div>
+//             <MyPosts postsData={state.profilePage.postsData} updatedTextPost={state.profilePage.newTextPost}
+//                      sendPostCB={sendPost} onChangeHandlerMyPostsCB={onChangeHandler}/>
+//         </div>
+//
+//     )
+// }
+
+const mapStateToProps = (state: AppRootStateType) => {
+    return {
+        postsData: state.profilePage.postsData,
+        updatedTextPost: state.profilePage.newTextPost
+    }
 }
 
-export const MyPostsContainer: FC<MyPostsContainerPropsType> = ({
-                                                                    postsData,
-                                                                    dispatch,
-                                                                    updatedTextPost
-                                                                }) => {
+const mapDispatchToProps = (dispatch: AppDispatch) => {
 
-    const sendPost = () => {
-        dispatch(addPostAC())
+    return {
+        sendPostCB: () => dispatch(addPostAC()),
+        onChangeHandlerMyPostsCB: (value: string) => dispatch(changeTextPostAC(value))
+
     }
-
-    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(changeTextPostAC(e.currentTarget.value))
-    }
-
-    const postList = postsData
-        .map(post => <Post
-            key={post.id}
-            message={post.postContent}
-            likesCount={post.likesCount}/>)
-
-    return (
-        <div className={s.myPosts}>
-            <h3>My posts</h3>
-            <div className={s.addPost}>
-                <textarea
-                    placeholder={'type new post'}
-                    onChange={onChangeHandler}
-                    value={updatedTextPost}></textarea>
-                <button onClick={sendPost}>SEND</button>
-            </div>
-            <div className={s.posts}>
-                {postList}
-
-            </div>
-        </div>
-
-    )
 }
+
+export const MyPostsContainer2 = connect(mapStateToProps, mapDispatchToProps)(MyPosts)

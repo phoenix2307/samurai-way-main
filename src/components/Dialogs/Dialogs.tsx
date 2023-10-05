@@ -14,14 +14,14 @@ import {ProfileActionType} from "../../redux/profileReducer";
 type DialogsPropsType = {
     dialogsData: DialogType[]
     messagesData: MessageType[]
-    updatedTextPost: string
+    newMessage: string
     dispatch: (action: DialogsActionType | ProfileActionType) => void
 }
 
 export const Dialogs: FC<DialogsPropsType> = ({
                                       dialogsData,
                                       messagesData,
-                                      updatedTextPost,
+                                                  newMessage,
                                       dispatch
                                   }) => {
 
@@ -47,7 +47,7 @@ export const Dialogs: FC<DialogsPropsType> = ({
             <div className={s.messagesItems}>
                 <div>{messagesList}</div>
                 <div><textarea
-                    value={updatedTextPost}
+                    value={newMessage}
                     placeholder={'type your message'}
                     onChange={onChangeHandler}
                 ></textarea></div>
@@ -58,3 +58,4 @@ export const Dialogs: FC<DialogsPropsType> = ({
         </div>
     )
 }
+

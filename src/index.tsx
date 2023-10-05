@@ -9,19 +9,38 @@ import {Provider} from "react-redux";
 
 // with Redux
 
-const rerenderEntireTreeForIndex = (state: AppRootStateType) => {
+// const rerenderEntireTreeForIndex = (state: AppRootStateType) => {
+//     ReactDOM.render(
+//         <BrowserRouter>
+//             <Provider store={store}>
+//                 <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
+//             </Provider>
+//         </BrowserRouter>,
+//         document.getElementById('root')
+//     );
+// }
+//
+// rerenderEntireTreeForIndex(store.getState());
+//
+// store.subscribe(() => {
+//     rerenderEntireTreeForIndex(store.getState())
+// })
+
+
+//
+const rerenderEntireTreeForIndex = () => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
-                <App state={state} dispatch={store.dispatch.bind(store)}/>
+                <App/>
             </Provider>
         </BrowserRouter>,
         document.getElementById('root')
     );
 }
 
-rerenderEntireTreeForIndex(store.getState());
+rerenderEntireTreeForIndex();
 
 store.subscribe(() => {
-    rerenderEntireTreeForIndex(store.getState())
+    rerenderEntireTreeForIndex()
 })

@@ -8,18 +8,23 @@ import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {AppRootStateType} from "./redux/redux-store";
-import {DialogsActionType} from "./redux/dialogsReducer";
-import {ProfileActionType} from "./redux/profileReducer";
+import {AppRootStateType, StoreType} from "./redux/redux-store";
+import {DialogsActionType, DialogsPageType} from "./redux/dialogsReducer";
+import {ProfileActionType, ProfilePageType} from "./redux/profileReducer";
+import {EmptyObject, Store} from "redux";
 
 type AppPropsType = {
-    state: AppRootStateType
-    dispatch: (action: DialogsActionType | ProfileActionType) => void
+    // state: AppRootStateType
+    // dispatch: (action: DialogsActionType | ProfileActionType) => void
+    // store: StoreType
+
 }
 
+
 export const App: FC<AppPropsType> = ({
-                                          state,
-                                          dispatch
+                                          // state,
+                                          // dispatch,
+                                          // store
                                       }) => {
 
     return (
@@ -30,20 +35,21 @@ export const App: FC<AppPropsType> = ({
 
                 <Route render={() =>
                     <Profile
-                        postsData={state.profilePage.postsData}
-                        updatedTextPost={state.profilePage.newTextPost}
-                        dispatch={dispatch}
+                        // store={store}
+                        // postsData={state.profilePage.postsData}
+                        // updatedTextPost={state.profilePage.newTextPost}
+                        // dispatch={dispatch}
                     />}
                        path={'/profile'}/>
 
-                <Route render={() =>
-                    <Dialogs
-                        dialogsData={state.dialogsPage.dialogsData}
-                        messagesData={state.dialogsPage.messagesData}
-                        updatedTextPost={state.dialogsPage.newMessage}
-                        dispatch={dispatch}
-                    />}
-                       path={'/dialogs'}/>
+                {/*<Route render={() =>*/}
+                {/*    <Dialogs*/}
+                {/*        dialogsData={state.dialogsPage.dialogsData}*/}
+                {/*        messagesData={state.dialogsPage.messagesData}*/}
+                {/*        newMessage={state.dialogsPage.newMessage}*/}
+                {/*        dispatch={dispatch}*/}
+                {/*    />}*/}
+                {/*       path={'/dialogs'}/>*/}
 
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
