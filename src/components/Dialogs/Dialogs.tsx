@@ -2,28 +2,24 @@ import React, {ChangeEvent, FC} from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {
-    changeMessageTextForDialogsAC,
-    DialogsActionType,
-    DialogType,
-    MessageType,
-    sendMessageAC
-} from "../../redux/dialogsReducer";
-import {ProfileActionType} from "../../redux/profileReducer";
+import {DialogType, MessageType} from "../../redux/dialogsReducer";
 
 type DialogsPropsType = {
     dialogsData: DialogType[]
     messagesData: MessageType[]
     newMessage: string
-    dispatch: (action: DialogsActionType | ProfileActionType) => void
+    onChangeHandlerCB: (value: string) => void
+    sendMessageCB: () => void
 }
 
 export const Dialogs: FC<DialogsPropsType> = ({
-                                      dialogsData,
-                                      messagesData,
+                                                  dialogsData,
+                                                  messagesData,
                                                   newMessage,
-                                      dispatch
-                                  }) => {
+                                                  onChangeHandlerCB,
+                                                  sendMessageCB
+
+                                              }) => {
 
     const dialogList = dialogsData.map(dialog => <DialogItem key={dialog.id}
                                                              id={dialog.id}
@@ -32,11 +28,10 @@ export const Dialogs: FC<DialogsPropsType> = ({
         .map(message => <Message key={message.id} messageText={message.messageText}/>)
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(changeMessageTextForDialogsAC(e.currentTarget.value))
+        onChangeHandlerCB(e.currentTarget.value)
     }
-
     const sendMessage = () => {
-        dispatch(sendMessageAC())
+        sendMessageCB()
     }
 
     return (
