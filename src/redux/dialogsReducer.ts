@@ -48,8 +48,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Di
                 id: v1(),
                 messageText: state.newMessage
             }
-            const newState = {...state, messagesData: [...state.messagesData, newMessageForSend]}
-            // state.messagesData.push(newMessageForSend)
+            const newState = {...state, messagesData: [newMessageForSend, ...state.messagesData]}
             newState.newMessage = '';
             return newState
 

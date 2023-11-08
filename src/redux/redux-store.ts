@@ -10,8 +10,8 @@ const rootReducer = combineReducers({
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch
+
 // export type AppDispatch = Dispatch<ProfileActionType | DialogsActionType>
-//
 
 // export type StoreType =  Store<EmptyObject
 //     & AppRootStateType,
