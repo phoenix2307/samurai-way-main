@@ -15,7 +15,9 @@ export type MessageType = {
 }
 
 type ChangeMessageTextActionType = ReturnType<typeof changeMessageTextForDialogsAC>
+
 type SendMessageActionType = ReturnType<typeof sendMessageAC>
+
 export type DialogsActionType = ChangeMessageTextActionType | SendMessageActionType
 
 const initialState = {

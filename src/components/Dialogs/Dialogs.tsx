@@ -4,7 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogType, MessageType} from "../../redux/dialogsReducer";
 
-type DialogsPropsType = {
+export type DialogsPropsType = {
     dialogsData: DialogType[]
     messagesData: MessageType[]
     newMessage: string
