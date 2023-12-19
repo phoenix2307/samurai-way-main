@@ -3,6 +3,7 @@ import {v1} from "uuid";
 export type UserType = {
     id: string
     name: string
+    ava: string
     status: string
     location: { country: string, city: string }
     followed: boolean
@@ -21,6 +22,7 @@ const initialState = {
         {
             id: v1(),
             name: 'Alex',
+            ava: '',
             status: 'father',
             location: {
                 country: 'Ukraine', city: 'Chernivci'
@@ -30,6 +32,7 @@ const initialState = {
         {
             id: v1(),
             name: 'Natalie',
+            ava: '',
             status: 'mother',
             location: {country: 'Ukraine', city: 'Chernivci'},
             followed: true
@@ -37,6 +40,7 @@ const initialState = {
         {
             id: v1(),
             name: 'Nika',
+            ava: '',
             status: 'daughter',
             location: {country: 'Ukraine', city: 'Chernivci'},
             followed: true
