@@ -1,10 +1,5 @@
-import {FC} from "react";
-import {UserType} from "../../../redux/usersReducer";
+import {FC, useState} from "react";
 import s from './User.module.css'
-import user1 from '../../../images/christian-buehner-DItYlc26zVI-unsplash.jpg'
-import user2 from '../../../images/christopher-campbell-rDEOVtE7vOs-unsplash.jpg'
-import user3 from '../../../images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg'
-import user4 from '../../../images/leilani-angel-K84vnnzxmTQ-unsplash.jpg'
 
 type UserPropsType = {
     id: string
@@ -13,20 +8,35 @@ type UserPropsType = {
     status: string
     location: { country: string, city: string }
     followed: boolean
+    toggleFollowCB: (idUser: string) => void
+    toggleUnFollowCB: (idUser: string) => void
 }
 
 export const User: FC<UserPropsType> = ({...userData}) => {
+    const [followedStatus, setFollowedStatus] = useState(userData.followed)
+
+    const onClickHandler = () => {
+        const newFollowedStatus = !followedStatus
+        setFollowedStatus(newFollowedStatus)
+        newFollowedStatus
+            ? userData.toggleFollowCB(userData.id)
+            : userData.toggleUnFollowCB(userData.id)
+    }
+
     return (
         <div className={s.container}>
             <div className={s.avatarBlock}>
-                <img src={user1} alt="" className={s.userAvatar}/>
-                <button>{userData.followed ? 'FOLLOW' : 'UNFOLLOW'}</button>
+                <img src={userData.ava} alt="" className={s.userAvatar}/>
+                <button onClick={onClickHandler}>
+                    {userData.followed ? 'FOLLOW' : 'UNFOLLOW'}
+                </button>
             </div>
 
             <div className={s.textBlock}>
                 <div>{userData.name}</div>
                 <div>{userData.status}</div>
-                <div>{userData.location}</div>
+                <div>{userData.location.city}</div>
+                <div>{userData.location.country}</div>
             </div>
         </div>
     )

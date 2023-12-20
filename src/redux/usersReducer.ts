@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import userIcon_1 from '../images/christian-buehner-DItYlc26zVI-unsplash.jpg'
+import userIcon_2 from '../images/leilani-angel-K84vnnzxmTQ-unsplash.jpg'
+import userIcon_3 from '../images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg'
 
 export type UserType = {
     id: string
@@ -22,7 +25,7 @@ const initialState = {
         {
             id: v1(),
             name: 'Alex',
-            ava: '',
+            ava: userIcon_1,
             status: 'father',
             location: {
                 country: 'Ukraine', city: 'Chernivci'
@@ -32,7 +35,7 @@ const initialState = {
         {
             id: v1(),
             name: 'Natalie',
-            ava: '',
+            ava: userIcon_2,
             status: 'mother',
             location: {country: 'Ukraine', city: 'Chernivci'},
             followed: true
@@ -40,7 +43,7 @@ const initialState = {
         {
             id: v1(),
             name: 'Nika',
-            ava: '',
+            ava: userIcon_3,
             status: 'daughter',
             location: {country: 'Ukraine', city: 'Chernivci'},
             followed: true
@@ -62,13 +65,13 @@ export const usersReducer = (state: UsersPageType = initialState,
     }
 }
 
-const followAC = (idUser: string) => {
+export const followAC = (idUser: string) => {
     return {
         type: 'FOLLOW',
         id: idUser
     } as const
 }
-const unFollowAC = (idUser: string) => {
+export const unFollowAC = (idUser: string) => {
     return {
         type: 'UNFOLLOW',
         id: idUser
