@@ -16,9 +16,10 @@ type UsersPageType = {
     usersData: UserType[]
 }
 
-type FollowAC = ReturnType<typeof followAC>
-type UnFollowAC = ReturnType<typeof unFollowAC>
-type UsersActionType = FollowAC | UnFollowAC
+type FollowACType = ReturnType<typeof followAC>
+type UnFollowACType = ReturnType<typeof unFollowAC>
+type SetUsersType = ReturnType<typeof setUsersAC>
+type UsersActionType = FollowACType | UnFollowACType | SetUsersType
 
 const initialState = {
     usersData: [
@@ -60,6 +61,9 @@ export const usersReducer = (state: UsersPageType = initialState,
         case 'UNFOLLOW':
             return {...state, usersData: state.usersData.map( user => user.id === action.id ? {...user, followed: false} : user )}
 
+        case 'SET_USERS':
+            return {...state, usersData: [...state.usersData, ...action.newUsers]}
+
         default:
             return state
     }
@@ -75,5 +79,12 @@ export const unFollowAC = (idUser: string) => {
     return {
         type: 'UNFOLLOW',
         id: idUser
+    } as const
+}
+
+export const setUsersAC = (users: UserType[]) => {
+    return {
+        type: 'SET_USERS',
+        newUsers: users
     } as const
 }

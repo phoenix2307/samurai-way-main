@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchUsersPropsType =>
     }
 }
 
-export const UsersContainer = connect<MapStateUsersPropsType, MapDispatchUsersPropsType, {}, AppRootStateType>(mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect<MapStateUsersPropsType, MapDispatchUsersPropsType, {}, AppRootStateType>(mapStateToProps,     mapDispatchToProps)(Users)
